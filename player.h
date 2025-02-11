@@ -18,6 +18,19 @@ class Player {
             std::cout << "You took " << amount << " damage.\n";
             std::cout << "Health: " << health << ".\n";
         }
+         //Allows player to heal if a specific item is found (Eddie)
+        void addHealth(unsigned int amount){
+            if(health == 100)
+            {
+                cout << "Health is full";
+            }
+            else
+            {
+                health += amount;
+                std::cout << "You gained " << amount << " Health.\n";
+                std::cout << "Health: " << health << ".\n";
+            }
+        }
 
         // Allows player to add items to inventory.
         void addItem(const std::string& item) {
