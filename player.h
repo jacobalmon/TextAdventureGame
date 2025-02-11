@@ -22,7 +22,7 @@ class Player {
         void addHealth(unsigned int amount){
             if(health == 100)
             {
-                cout << "Health is full";
+                std::cout << "Health is full";
             }
             else
             {
