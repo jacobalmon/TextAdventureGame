@@ -1,8 +1,11 @@
 #include <iostream>
+#include "rooms.h"
 
 class Game {
     public:
-        void gameloop(); // Run indefinately.
+        void gameloop() {
+
+        }; 
 };
 
 int main() {
