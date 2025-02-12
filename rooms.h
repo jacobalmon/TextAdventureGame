@@ -2,7 +2,7 @@
 #define ROOMS_H
 
 #include "player.h"
-#include "monster.h"
+#include "goober.h"
 
 class Room1 {
   public:
@@ -18,37 +18,37 @@ class Room1 {
           std::cout << "You fled\n";
           std::cout << "You have enterd room 1.5\n";
           std::cout << "-------- Choose a room: 1 - Enter 1.4 | Enter 1.8 | Enter 4 --------\n";
-          if(choice_dos == 1.7)
+         
+          if(choice_dos == 1.7)//Player must choose this first before they continue, otherwise they will encounter an enemy that will one shot them if they do not have a weapon.
           {
             player.addItem("Rusty Sword");
             std::cout << "Congratulations, now have a weapon in your inventory.[Rusty Sword:15+ damage]\n";
             std::cout << "You have encountered an enemy!\n";
+            std::cout << "Its a goober!\n";
             std::cout << "-------- Choose: 1 - To flee or 2 - To attack --------\n";
             //Continue Here
 
           }
 
-         else if(choice_dos == 1.8)
-         {
+           else if(choice_dos == 1.8)//Player must choose this after they choose room1.7
+           {
            
-          player.addItem("Key");
-          std::cout << "Congratulations! You obtained a key\n";
-          Room2 room2
-          room2.enter(player);
+            player.addItem("Key");
+            std::cout << "Congratulations! You obtained a key\n";
+            Room2 room2
+            room2.enter(player);
            
-         }
+           }
            
-         else if(choice_dos == 4)
-         {
+           else if(choice_dos == 4) //DO NOT ENTER PLEASE PLEASE PLEEEEEAAAAAAAAAAASSSSSSSSSSSniueinieuneiu 
+           {
 
            
 
+  
+           }
 
-         }
-
-                   
-          
-         
+                            
         
        }
        else if(choice == 2) //Path will lead the player to start again
