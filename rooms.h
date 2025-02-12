@@ -1,9 +1,5 @@
-#ifndef ROOMS_H
-#define ROOMS_H
-
 #include "player.h"
 #include "goober.h"
-#include <iostream>
 //Rules: Path to success = path player neeeds to take in order to complete the game.
 class Room1 {
   public:
@@ -136,6 +132,3 @@ class Room2 {
 class Room3 {};
 
 class Room4 {};
-
-
-#endif
