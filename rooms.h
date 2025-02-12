@@ -62,11 +62,11 @@ class Room1 {
             std::cout << "KS - ...\n";
             std::cout << "Game Over.\n";
 
-  
+
+             
            }
 
-                            
-        
+ 
        }
        else if(choice == 2) //Path will lead the player to start again because they decided to fight the final boss with nothing other than their bare hands.
        {
@@ -103,15 +103,7 @@ class Room2 {
        std::cout << "Welcome to Room 2\n";
        std::cout << "Suddenly, an enemy appears!\n";
 
-       bool hasWeapon = false;
-       for (const auto& item : player.getInventory()) {
-           if (item == "Rusty Sword") {
-               hasWeapon = true;
-               break;
-           }
-       }
-
-       if (!hasWeapon) {
+       if (!player.hasItem("Rusty Sword")) { 
            std::cout << "You have no weapon to defend yourself!\n";
            std::cout << "The enemy strikes and you take 100 damage!\n";
            player.takeDamage(100);
@@ -121,13 +113,71 @@ class Room2 {
                player = Player(); // Reset player
                Room1 room1;
                room1.enter(player);
+               return; // Exit to prevent further execution
            }
-       } else {
+       } 
+       else 
+       {  
            std::cout << "You use your Rusty Sword to fight off the enemy!\n";
            std::cout << "You barely make it out alive but continue forward.\n";
+           std::cout << "--- You have encountered an enemy! ---\n";
+           std::cout << "It's a pair of Goobers!\n";
+           std::cout << "-------- Choose: 1 - To flee or 2 - To attack --------\n";
+
+           int choice;
+           std::cin >> choice;
+
+           if (choice == 1) 
+           {
+               std::cout << "You fled successfully!\n";
+               return;
+           } 
+           else if (choice == 2) {
+               std::cout << "You chose to fight!\n";
+               int playerDamage = 15; // Rusty Sword deals 15 damage
+               int gooberHealth = 20;
+               int numGoobers = 2;
+               int gooberDamage = 10; // Each Goober deals 10 damage
+
+               while (numGoobers > 0 && player.isAlive()) 
+               {
+                   // Player's Turn
+                   std::cout << "You strike a Goober with your Rusty Sword!\n";
+                   gooberHealth -= playerDamage;
+
+                   if (gooberHealth <= 0) {
+                       std::cout << "You defeated a Goober!\n";
+                       numGoobers--;
+                       if (numGoobers > 0) {
+                           std::cout << "One Goober remains!\n";
+                           gooberHealth = 20; // Reset health for the second Goober
+                       }
+                   }
+
+                   // Enemy's Turn (if still alive)
+                   if (numGoobers > 0) 
+                   {
+                       std::cout << "The Goobers strike back!\n";
+                       player.takeDamage(gooberDamage);
+                       player.takeDamage(gooberDamage); // Both Goobers attack
+
+                       if (!player.isAlive()) 
+                       {
+                           std::cout << "You have fallen in battle!\n";
+                           std::cout << "Restarting from Room 1...\n";
+                           player = Player(); // Reset player
+                           Room1 room1;
+                           room1.enter(player);
+                           return;
+                       }
+                   }
+               }
+
+               std::cout << "You have successfully defeated both Goobers!\n";
+               
+           }
        }
     }
-
 };
 
 class Room3 {};
