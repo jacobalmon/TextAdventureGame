@@ -1,5 +1,6 @@
 #include "player.h"
 #include "goober.h"
+#include <iostream>
 //Rules: Path to success = path player neeeds to take in order to complete the game.
 class Room1 {
   public:

@@ -19,6 +19,7 @@ class Game {
             std::cout << "Welcome to the Text Adventure!\n";
             while (player.isAlive() && !quit) {
                 // Write Game Logic & Story.
+                room1.enter(player);
             }
         };
 };
