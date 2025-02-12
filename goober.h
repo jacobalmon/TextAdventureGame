@@ -5,6 +5,6 @@ class Monster {
     private:
         int health;
     public:
-         Monster() : health(100) {}
+         Monster() : health(20) {}
 
 };
