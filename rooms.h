@@ -21,18 +21,35 @@ class Room1 {
          
           if(choice_dos == 1.7)//Player must choose this first before they continue, otherwise they will encounter an enemy that will one shot them if they do not have a weapon.
           {
+            std::cout << "You have enterd room 1.7\n";
             player.addItem("Rusty Sword");
             std::cout << "Congratulations, now have a weapon in your inventory.[Rusty Sword:15+ damage]\n";
             std::cout << "You have encountered an enemy!\n";
             std::cout << "Its a goober!\n";
-            std::cout << "-------- Choose: 1 - To flee or 2 - To attack --------\n";
-            //Continue Here
+
+              // Player is forced to fight
+              Goober goober;
+              std::cout << "You have no choice but to fight!\n";
+              std::cout << "You attacked Goober with your Rusty Sword!\n";
+              
+              goober.takeDamage(15);
+
+              if (!goober.isAlive()) {
+                  std::cout << "Goober has been defeated!\n";
+                  player.takeDamage(15);
+                  std::cout << "You lost 15 HP in the battle.\n";
+                  std::cout << "You survived and can now proceed.\n";
+                  player.addItem("Key");
+                  std::cout << "Congratulations! You obtained a key\n";
+                  Room2 room2
+                  room2.enter(player);
+              }
 
           }
 
-           else if(choice_dos == 1.8)//Player must choose this after they choose room1.7
+           else if(choice_dos == 1.8)//Player will be able to enter room2 without obtaining a weapon but will immedietly get killed by an enemy and will be forced to start over.
            {
-           
+            std::cout << "You have enterd room 1.8\n";
             player.addItem("Key");
             std::cout << "Congratulations! You obtained a key\n";
             Room2 room2
@@ -81,7 +98,35 @@ class Room1 {
 };
 
 class Room2 {
-   std::cout << "Welcome to room 2\n";
+   public:
+    void enter(Player& player) {
+       std::cout << "Welcome to Room 2\n";
+       std::cout << "Suddenly, an enemy appears!\n";
+
+       bool hasWeapon = false;
+       for (const auto& item : player.getInventory()) {
+           if (item == "Rusty Sword") {
+               hasWeapon = true;
+               break;
+           }
+       }
+
+       if (!hasWeapon) {
+           std::cout << "You have no weapon to defend yourself!\n";
+           std::cout << "The enemy strikes and you take 100 damage!\n";
+           player.takeDamage(100);
+
+           if (!player.isAlive()) {
+               std::cout << "You died! Restarting from Room 1...\n";
+               player = Player(); // Reset player
+               Room1 room1;
+               room1.enter(player);
+           }
+       } else {
+           std::cout << "You use your Rusty Sword to fight off the enemy!\n";
+           std::cout << "You barely make it out alive but continue forward.\n";
+       }
+    }
 
 };
 
