@@ -19,11 +19,6 @@ class Game {
             while (player.isAlive() && !quit) {
                 // Write Game Logic & Story.
                 bool complete = room1.enter(player);
-                if (!complete) {
-                    return;
-                }  else {
-                    // Enter Room2.
-                }
             }
         };
 };
