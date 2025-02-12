@@ -1,10 +1,10 @@
 #include <vector>
 #include <iostream>
 
-class Player {
+class Monster {
     private:
         int health;
-        std::vector<std::string> inventory;
     public:
+         Monster() : health(100) {}
 
 }
