@@ -3,12 +3,13 @@
 
 #include "player.h"
 #include "goober.h"
+#include <iostream>
 //Rules: Path to success = path player neeeds to take in order to complete the game.
 class Room1 {
   public:
     void enter(Player& player){
        int choice; // Player can only choose between 1 and 2
-       string choice_dos// Player can only choose between 1.4, 1.8,and 4
+       float choice_dos; // Player can only choose between 1.4, 1.8,and 4
        std::cout << "You entered Room 1.\n"; 
        std::cout << "You have encountered an enemy!\n";
        std::cout << "-------- Choose: 1 - To flee or 2 - To attack --------\n";
@@ -41,7 +42,7 @@ class Room1 {
                   std::cout << "You survived and can now proceed.\n";
                   player.addItem("Key");
                   std::cout << "Congratulations! You obtained a key\n";
-                  Room2 room2
+                  Room2 room2;
                   room2.enter(player);
               }
 
@@ -52,7 +53,7 @@ class Room1 {
             std::cout << "You have enterd room 1.8\n";
             player.addItem("Key");
             std::cout << "Congratulations! You obtained a key\n";
-            Room2 room2
+            Room2 room2;
             room2.enter(player);
            
            }
@@ -63,7 +64,6 @@ class Room1 {
             std::cout << "...\n";
             std::cout << "KS - ...\n";
             std::cout << "Game Over.\n";
-            break;
 
   
            }
@@ -133,15 +133,9 @@ class Room2 {
 
 };
 
-class Room3 {
-   std::cout << "Welcome to room 3\n";
+class Room3 {};
 
-};
-
-class Room4 {
-   std::cout << "Welcome to room 4\n";
-
-};
+class Room4 {};
 
 
 #endif

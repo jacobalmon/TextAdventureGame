@@ -51,4 +51,10 @@ class Player {
                 std::cout << "- " << item << "\n";
             }
         }
+
+        // Returns Current Inventory.
+        std::vector<std::string>& getInventory() { return inventory; }
+
+        // Returns Health.
+        int getHealth() const { return health; }
 };
