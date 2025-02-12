@@ -3,13 +3,13 @@
 
 #include "player.h"
 #include "goober.h"
-
+//Rules: Path to success = path player neeeds to take in order to complete the game.
 class Room1 {
   public:
     void enter(Player& player){
-       int choice;
-       string choice_dos
-       std::cout << "You entered Room 1.\n";
+       int choice; // Player can only choose between 1 and 2
+       string choice_dos// Player can only choose between 1.4, 1.8,and 4
+       std::cout << "You entered Room 1.\n"; 
        std::cout << "You have encountered an enemy!\n";
        std::cout << "-------- Choose: 1 - To flee or 2 - To attack --------\n";
        std::cin >> choice;
@@ -19,7 +19,7 @@ class Room1 {
           std::cout << "You have enterd room 1.5\n";
           std::cout << "-------- Choose a room: 1 - Enter 1.4 | Enter 1.8 | Enter 4 --------\n";
          
-          if(choice_dos == 1.7)//Player must choose this first before they continue, otherwise they will encounter an enemy that will one shot them if they do not have a weapon.
+          if(choice_dos == 1.7)//Path to success
           {
             std::cout << "You have enterd room 1.7\n";
             player.addItem("Rusty Sword");
@@ -59,8 +59,10 @@ class Room1 {
            
            else if(choice_dos == 4) //DO NOT ENTER PLEASE PLEASE PLEEEEEAAAAAAAAAAASSSSSSSSSSSniueinieuneiu 
            {
-
-           
+            std::cout << "Player - W..wh..what.....ar.......no....no no no NOOOOO NOOOOO DONT DO THI AAAAAAAAAAAAAAAAAAONOUNI)N)(J()NI\n";
+            std::cout << "...\n";
+            std::cout << "??? - ...\n";
+            std::cout << "Game Over.\n";
 
   
            }
@@ -68,7 +70,7 @@ class Room1 {
                             
         
        }
-       else if(choice == 2) //Path will lead the player to start again
+       else if(choice == 2) //Path will lead the player to start again because they decided to fight the final boss with nothing other than their bare hands.
        {
          std::cout << "You chose to attack with no weapon equiped\n";
          player.takeDamage(100);
