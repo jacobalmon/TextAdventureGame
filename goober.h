@@ -1,10 +1,10 @@
 #include <vector>
 #include <iostream>
 
-class Monster {
+class Goober {
     private:
         int health;
     public:
-         Monster() : health(20) {}
+         Goober() : health(20) {}
 
 };
