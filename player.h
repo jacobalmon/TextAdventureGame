@@ -52,6 +52,8 @@ class Player {
             }
         }
 
+        bool hasItem(const std::string& item){}
+
         // Returns Current Inventory.
         std::vector<std::string>& getInventory() { return inventory; }
 

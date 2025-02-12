@@ -1,6 +1,5 @@
 #include <iostream>
 #include "rooms.h"
-#include "player.h"
 
 class Game {
     private:
@@ -8,9 +7,9 @@ class Game {
     protected:
         Player player;
         Room1 room1;
-        Room2 room2;
-        Room3 room3;
-        Room4 room4;
+        // Room2 room2;
+        // Room3 room3;
+        // Room4 room4;
     public:
         // Game set to not quit out, unless specified in game.
         Game() : quit(false) {}
@@ -19,7 +18,12 @@ class Game {
             std::cout << "Welcome to the Text Adventure!\n";
             while (player.isAlive() && !quit) {
                 // Write Game Logic & Story.
-                room1.enter(player);
+                bool complete = room1.enter(player);
+                if (!complete) {
+                    return;
+                }  else {
+                    // Enter Room2.
+                }
             }
         };
 };

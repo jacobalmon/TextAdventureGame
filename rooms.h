@@ -6,7 +6,7 @@
 //Rules: Path to success = path player neeeds to take in order to complete the game.
 class Room1 {
   public:
-    boolean enter(Player& player){
+    bool enter(Player& player){
        int choice; // Player can only choose between 1 and 2
        float choice_dos; // Player can only choose between 1.4, 1.8,and 4
        std::cout << "You entered Room 1.\n"; 
@@ -42,9 +42,7 @@ class Room1 {
                   std::cout << "You survived and can now proceed.\n";
                   player.addItem("Key");
                   std::cout << "Congratulations! You obtained a key\n";
-                  Room2 room2;
-                  room2.enter(player);
-                  return true
+                  return true;
               }
 
           }
@@ -54,8 +52,6 @@ class Room1 {
             std::cout << "You have enterd room 1.8\n";
             player.addItem("Key");
             std::cout << "Congratulations! You obtained a key\n";
-            Room2 room2;
-            room2.enter(player);
             return true;
            
            }
@@ -92,6 +88,7 @@ class Room1 {
                 else 
               {
                   std::cout << "Game Over!\n";
+                  return false;
               }
 
          }
@@ -105,7 +102,7 @@ class Room1 {
 
 class Room2 {
    public:
-    boolean enter(Player& player) {
+    bool enter(Player& player) {
        std::cout << "Welcome to Room 2\n";
        std::cout << "Suddenly, an enemy appears!\n";
 
@@ -115,11 +112,8 @@ class Room2 {
            player.takeDamage(100);
 
            if (!player.isAlive()) {
-               std::cout << "You died! Restarting from Room 1...\n";
-               player = Player(); // Reset player
-               Room1 room1;
-               room1.enter(player);
-               return; // Exit to prevent further execution
+               std::cout << "You died!\n";
+               return false; // Exit to prevent further execution
            }
        } 
        else 
@@ -136,7 +130,7 @@ class Room2 {
            if (choice == 1) //Path to success 1 (Easy)
            {
                std::cout << "You fled successfully!\n";
-               return;
+               return false;
            } 
            else if (choice == 2) //Path to success 2 (Medieum)
            {
@@ -171,16 +165,13 @@ class Room2 {
                        if (!player.isAlive()) 
                        {
                            std::cout << "You have fallen in battle!\n";
-                           std::cout << "Restarting from Room 1...\n";
-                           player = Player(); // Reset player
-                           Room1 room1;
-                           room1.enter(player);
-                           return;
+                           std::cout << "Game Over.\n";
+                           return false;
                        }
                    }
                }
              
-               float choice_dos;
+               int choice_dos;
                std::unordered_set<float> visitedRooms; // Track visited rooms
                std::cout << "You have successfully defeated both Goobers!\n";
                std::cout << "The goobers dropped something.\n";
@@ -213,13 +204,13 @@ class Room2 {
                             std::cout << "You have entered Room 2.1.\n";
                             visitedRooms.insert(2.1); // Mark 2.1 as visited
                             // Proceed with Room 2.1 events
-                            return;
+                            return true;
 
                         case 3: // Room 2.8
                             std::cout << "You have entered Room 2.8.\n";
                             visitedRooms.insert(2.8); // Mark 2.8 as visited
                             // Proceed with Room 2.8 events
-                            return;
+                            return true;
 
                         case 4: // Room 4 (Dangerous)
                             std::cout << "You foolishly entered Room 4...\n";
@@ -243,6 +234,6 @@ class Room2 {
     }
 };
 
-class Room3 {};
+// class Room3 {};
 
-class Room4 {};
+// class Room4 {};
