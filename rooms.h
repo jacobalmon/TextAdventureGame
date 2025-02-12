@@ -61,7 +61,7 @@ class Room1 {
            {
             std::cout << "Player - W..wh..what.....ar.......no....no no no NOOOOO NOOOOO DONT DO THI AAAAAAAAAAAAAAAAAAONOUNI)N)(J()NI\n";
             std::cout << "...\n";
-            std::cout << "??? - ...\n";
+            std::cout << "KS - ...\n";
             std::cout << "Game Over.\n";
             break;
 
