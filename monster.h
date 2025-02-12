@@ -7,4 +7,4 @@ class Monster {
     public:
          Monster() : health(100) {}
 
-}
+};
