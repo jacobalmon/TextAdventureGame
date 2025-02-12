@@ -2,6 +2,7 @@
 #define ROOMS_H
 
 #include "player.h"
+#include "monster.h"
 
 class Room1 {
   public:
