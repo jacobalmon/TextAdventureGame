@@ -1,10 +1,12 @@
 #include "player.h"
 #include "goober.h"
 #include <iostream>
+#include <unordered_set> // For tracking visited rooms
+
 //Rules: Path to success = path player neeeds to take in order to complete the game.
 class Room1 {
   public:
-    void enter(Player& player){
+    boolean enter(Player& player){
        int choice; // Player can only choose between 1 and 2
        float choice_dos; // Player can only choose between 1.4, 1.8,and 4
        std::cout << "You entered Room 1.\n"; 
@@ -42,6 +44,7 @@ class Room1 {
                   std::cout << "Congratulations! You obtained a key\n";
                   Room2 room2;
                   room2.enter(player);
+                  return true
               }
 
           }
@@ -53,6 +56,7 @@ class Room1 {
             std::cout << "Congratulations! You obtained a key\n";
             Room2 room2;
             room2.enter(player);
+            return true;
            
            }
            
@@ -62,6 +66,7 @@ class Room1 {
             std::cout << "...\n";
             std::cout << "KS - ...\n";
             std::cout << "Game Over.\n";
+            return false;
 
 
              
@@ -100,7 +105,7 @@ class Room1 {
 
 class Room2 {
    public:
-    void enter(Player& player) {
+    boolean enter(Player& player) {
        std::cout << "Welcome to Room 2\n";
        std::cout << "Suddenly, an enemy appears!\n";
 
@@ -174,21 +179,65 @@ class Room2 {
                        }
                    }
                }
+             
                float choice_dos;
+               std::unordered_set<float> visitedRooms; // Track visited rooms
                std::cout << "You have successfully defeated both Goobers!\n";
                std::cout << "The goobers dropped something.\n";
                std::cout << "Its obsidion!\n";
                std::cout << "Keep exploring to find more peices of obsidion to craft the obsidion sword or key.\n"; //A piece of obsidion was discovered here.
                std::cout << "You have enterd room 2.5\n";
-               std::cout << "-------- Choose a room: 1 - Enter 2.7 | Enter 2.1 | Enter 2.8 | Enter 4(DO NOT ENTER) --------\n";
-               std::cin >> choice_dos;
                //2.7  - You get a new sword but it is a dead end so they go back(Needed if user wants to survive through room 2.1 and beyond)
                //2.1 - 2.3 - Room3(Success)
                //2.8 - 2.2 - 2.4 ----- 2.6 ---- 2.5 ---- Room3 (Success)
                //    (Fight monsters)   |-------1.1(Obsidion piece 2/3) ------- 1.3 ---------- room3 (Sucesss)
                //4 STOP STOP DOOOOOONNNNNT AHHHHHHHHH INUNUNUINIUNUNWONDW
+               while (true) {
+                    std::cout << "-------- Choose a room: 1 - Enter 2.7 | 2 - Enter 2.1 | 3 - Enter 2.8 | 4 - Enter 4 (DO NOT ENTER) --------\n";
+                    std::cin >> choice_dos;
 
-               
+                    // Check if the player already visited the room
+                    if (visitedRooms.find(choice_dos) != visitedRooms.end()) {
+                        std::cout << "You have already visited this room! Choose another.\n";
+                        continue;
+                    }
+
+                    switch (choice_dos) {
+                        case 1: // Room 2.7 (Dead End)
+                            std::cout << "You have entered Room 2.7, but it's a dead end!\n";
+                            std::cout << "You must return and choose another room.\n";
+                            visitedRooms.insert(2.7); // Mark 2.7 as visited
+                            break; // Forces the player back to selection
+
+                        case 2: // Room 2.1
+                            std::cout << "You have entered Room 2.1.\n";
+                            visitedRooms.insert(2.1); // Mark 2.1 as visited
+                            // Proceed with Room 2.1 events
+                            return;
+
+                        case 3: // Room 2.8
+                            std::cout << "You have entered Room 2.8.\n";
+                            visitedRooms.insert(2.8); // Mark 2.8 as visited
+                            // Proceed with Room 2.8 events
+                            return;
+
+                        case 4: // Room 4 (Dangerous)
+                            std::cout << "You foolishly entered Room 4...\n";
+                            std::cout << "An overwhelming enemy strikes! You stand no chance.\n";
+                            player.takeDamage(100); // Instant death
+                            if (!player.isAlive()) {
+                                std::cout << "You died! Restarting from Room 1...\n";
+                                player = Player(); // Reset player
+                                Room1 room1;
+                                room1.enter(player);
+                            }
+                            return false; // Exit the function
+
+                        default:
+                            std::cout << "Invalid choice. Try again.\n";
+                            break;
+                    }
+                }    
            }
        }
     }
