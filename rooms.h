@@ -16,6 +16,7 @@ class Room1 {
           std::cout << "You fled\n";
           std::cout << "You have enterd room 1.5\n";
           std::cout << "-------- Choose a room: 1 - Enter 1.4 | Enter 1.8 | Enter 4 --------\n";
+          std::cin >> choice_dos;
          
           if(choice_dos == 1.7)//Path to success
           {
@@ -127,12 +128,13 @@ class Room2 {
            int choice;
            std::cin >> choice;
 
-           if (choice == 1) 
+           if (choice == 1) //Path to success 1 (Easy)
            {
                std::cout << "You fled successfully!\n";
                return;
            } 
-           else if (choice == 2) {
+           else if (choice == 2) //Path to success 2 (Medieum)
+           {
                std::cout << "You chose to fight!\n";
                int playerDamage = 15; // Rusty Sword deals 15 damage
                int gooberHealth = 20;
@@ -172,8 +174,20 @@ class Room2 {
                        }
                    }
                }
-
+               float choice_dos;
                std::cout << "You have successfully defeated both Goobers!\n";
+               std::cout << "The goobers dropped something.\n";
+               std::cout << "Its obsidion!\n";
+               std::cout << "Keep exploring to find more peices of obsidion to craft the obsidion sword or key.\n"; //A piece of obsidion was discovered here.
+               std::cout << "You have enterd room 2.5\n";
+               std::cout << "-------- Choose a room: 1 - Enter 2.7 | Enter 2.1 | Enter 2.8 | Enter 4(DO NOT ENTER) --------\n";
+               std::cin >> choice_dos;
+               //2.7  - You get a new sword but it is a dead end so they go back(Needed if user wants to survive through room 2.1 and beyond)
+               //2.1 - 2.3 - Room3(Success)
+               //2.8 - 2.2 - 2.4 ----- 2.6 ---- 2.5 ---- Room3 (Success)
+               //    (Fight monsters)   |-------1.1(Obsidion piece 2/3) ------- 1.3 ---------- room3 (Sucesss)
+               //4 STOP STOP DOOOOOONNNNNT AHHHHHHHHH INUNUNUINIUNUNWONDW
+
                
            }
        }
