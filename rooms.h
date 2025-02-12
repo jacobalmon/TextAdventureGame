@@ -63,6 +63,7 @@ class Room1 {
             std::cout << "...\n";
             std::cout << "??? - ...\n";
             std::cout << "Game Over.\n";
+            break;
 
   
            }
