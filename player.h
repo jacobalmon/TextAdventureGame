@@ -59,4 +59,9 @@ class Player {
 
         // Returns Health.
         int getHealth() const { return health; }
+
+        void reset() {
+            health = 100;
+            inventory.clear();
+        }
 };
