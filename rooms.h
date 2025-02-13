@@ -6,98 +6,84 @@
 //Rules: Path to success = path player neeeds to take in order to complete the game.
 class Room1 {
   public:
-    bool enter(Player& player){
-       int choice; // Player can only choose between 1 and 2
-       float choice_dos; // Player can only choose between 1.4, 1.8,and 4
-       std::cout << "You entered Room 1.\n"; 
-       std::cout << "You have encountered an enemy!\n";
-       std::cout << "-------- Choose: 1 - To flee or 2 - To attack --------\n";
-       std::cin >> choice;
-       if(choice == 1)  //Path to success 
-       { 
-          std::cout << "You fled\n";
-          std::cout << "You have enterd room 1.5\n";
-          std::cout << "-------- Choose a room: 1 - Enter 1.4 | Enter 1.8 | Enter 4 --------\n";
-          std::cin >> choice_dos;
-         
-          if(choice_dos == 1.7)//Path to success
-          {
-            std::cout << "You have enterd room 1.7\n";
+
+    void fled(Player& player) {
+        float choice_dos; // Player can only choose between 1.4, 1.8,and 4
+        std::cout << "You fled\n";
+        std::cout << "You have enterd room 1.5\n";
+        std::cout << "-------- Choose a room: 1 - Enter 1.4 | Enter 1.8 | Enter 4 --------\n";
+        std::cin >> choice_dos;
+
+        if(choice_dos == 1.4)//Path to success
+        {
+            std::cout << "You have enterd room 1.4\n";
             player.addItem("Rusty Sword");
             std::cout << "Congratulations, now have a weapon in your inventory.[Rusty Sword:15+ damage]\n";
             std::cout << "You have encountered an enemy!\n";
             std::cout << "Its a goober!\n";
 
-              // Player is forced to fight
-              Goober goober;
-              std::cout << "You have no choice but to fight!\n";
-              std::cout << "You attacked Goober with your Rusty Sword!\n";
+            // Player is forced to fight
+            Goober goober;
+            std::cout << "You have no choice but to fight!\n";
+            std::cout << "You attacked Goober with your Rusty Sword!\n";
               
-              goober.takeDamage(15);
+            goober.takeDamage(15);
 
-              if (!goober.isAlive()) {
-                  std::cout << "Goober has been defeated!\n";
-                  player.takeDamage(15);
-                  std::cout << "You lost 15 HP in the battle.\n";
-                  std::cout << "You survived and can now proceed.\n";
-                  player.addItem("Key");
-                  std::cout << "Congratulations! You obtained a key\n";
-                  return true;
-              }
-
+            if (!goober.isAlive()) {
+                std::cout << "Goober has been defeated!\n";
+                player.takeDamage(15);
+                std::cout << "You lost 15 HP in the battle.\n";
+                std::cout << "You survived and can now proceed.\n";
+                player.addItem("Key");
+                std::cout << "Congratulations! You obtained a key\n";
+                return;
+            }
+            else if(choice_dos == 1.8)//Player will be able to enter room2 without obtaining a weapon but will immedietly get killed by an enemy and will be forced to start over.
+            {
+             std::cout << "You have enterd room 1.8\n";
+             player.addItem("Key");
+             std::cout << "Congratulations! You obtained a key\n";
+             return;
+            
+            }
+            
+            else if(choice_dos == 4) //DO NOT ENTER PLEASE PLEASE PLEEEEEAAAAAAAAAAASSSSSSSSSSSniueinieuneiu 
+            {
+                std::cout << "Player - W..wh..what.....ar.......no....no no no NOOOOO NOOOOO DONT DO THI AAAAAAAAAAAAAAAAAAONOUNI)N)(J()NI\n";
+                std::cout << "...\n";
+                std::cout << "KS - ...\n";
+                std::cout << "Game Over.\n";
+                return;
+            }
           }
-
-           else if(choice_dos == 1.8)//Player will be able to enter room2 without obtaining a weapon but will immedietly get killed by an enemy and will be forced to start over.
-           {
-            std::cout << "You have enterd room 1.8\n";
-            player.addItem("Key");
-            std::cout << "Congratulations! You obtained a key\n";
-            return true;
-           
-           }
-           
-           else if(choice_dos == 4) //DO NOT ENTER PLEASE PLEASE PLEEEEEAAAAAAAAAAASSSSSSSSSSSniueinieuneiu 
-           {
-            std::cout << "Player - W..wh..what.....ar.......no....no no no NOOOOO NOOOOO DONT DO THI AAAAAAAAAAAAAAAAAAONOUNI)N)(J()NI\n";
-            std::cout << "...\n";
-            std::cout << "KS - ...\n";
-            std::cout << "Game Over.\n";
-            return false;
-
-
-             
-           }
-
- 
-       }
-       else if(choice == 2) //Path will lead the player to start again because they decided to fight the final boss with nothing other than their bare hands.
-       {
-         std::cout << "You chose to attack with no weapon equiped\n";
-         player.takeDamage(100);
-         std::cout << "You have lost 100 hp";
-         if(!player.isAlive()){
-            std::cout << "You died! Would you like to try again? (1 - Yes, 2 - No): ";
-              int retry;
-              std::cin >> retry;              
-              if (retry == 1) 
-              {
-                  std::cout << "Restarting...\n";
-                  player = Player(); // Reset the player
-                  enter(player);     // Restart Room1
-              } 
-                else 
-              {
-                  std::cout << "Game Over!\n";
-                  return false;
-              }
-
-         }
-         
-       }
-      
     }
-     
-   
+    
+    void unprepared(Player& player) {
+        std::cout << "You chose to attack with no weapon equiped\n";
+        player.takeDamage(100);
+        std::cout << "You have lost 100 hp";
+    }
+
+    bool enter(Player& player) {
+       int choice; // Player can only choose between 1 and 2
+       std::cout << "You entered Room 1.\n"; 
+       std::cout << "You have encountered an enemy!\n";
+       std::cout << "-------- Choose: 1 - To flee or 2 - To attack --------\n";
+       std::cin >> choice;
+       if(choice == 1)  // Path to success 
+       { 
+            fled(player);
+            return true;
+       }
+       else if(choice == 2) // Path will lead the player to start again because they decided to fight the final boss with nothing other than their bare hands.
+       {
+            unprepared(player);
+            return false;
+       } else {
+            std::cout << "Invalid Input, Try Again.\n";
+            enter(player);
+       }
+    }
 };
 
 class Room2 {
