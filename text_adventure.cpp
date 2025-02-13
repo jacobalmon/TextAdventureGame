@@ -7,7 +7,7 @@ class Game {
     protected:
         Player player;
         Room1 room1;
-        // Room2 room2;
+        Room2 room2;
         // Room3 room3;
         // Room4 room4;
     public:
@@ -18,7 +18,12 @@ class Game {
             std::cout << "Welcome to the Text Adventure!\n";
             while (player.isAlive() && !quit) {
                 // Write Game Logic & Story.
-                bool complete = room1.enter(player);
+                bool complete1 = room1.enter(player);
+                if (!complete1) {
+                    return;
+                }
+
+                bool complete2 = room2.enter(player);
             }
         };
 };
