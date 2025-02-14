@@ -241,6 +241,35 @@ class Room2 {
     }
 };
 
+<<<<<<< HEAD
 // class Room3 {};
 
 // class Room4 {};
+=======
+class Room3 {
+    public:
+    void enter(Player& player) {
+        std::cout << "You enter a dimly lit room with a faint scent of lavender and... is that baby oil?\n";
+        std::cout << "In the center stands a man gleaming under the flickering lights, completely drenched in baby oil.\n";
+        std::cout << "He looks at you intensely and whispers: 'would you like some?'\n";
+
+        int choice;
+        std::cout << "-------- Choose: 1 - Accept the baby oil | 2 - Politely decline --------\n";
+        std::cin >> choice;
+
+        if (choice == 1) {
+            std::cout << "You hesitantly accept the baby oil.\n";
+            std::cout << "He hands you a small bottle labeled 'Healing Baby Oil'.\n";
+            player.addItem("Baby Oil");
+            std::cout << "You gained mystical healing Baby Oil! (Heals 100 HP when used!)\n";
+        } else {
+            std::cout << "You decline, but he stares at you with disappointment.\n";
+            std::cout << "'Suit yourself,' he mutters, rubbing more oil on himself.\n";
+        }
+
+        std::cout << "You awkwardly leave the room.You slip a little but manage to keep your balance.\n";
+
+    } // the diidler room.
+};
+class Room4 {}; //boss room.
+>>>>>>> Oscar
