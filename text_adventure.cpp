@@ -22,13 +22,14 @@ class Game {
                 }
                 
                 bool complete2 = room2.enter(player);
+
             }
             std::cout << "Do you want to play again? (Y/N)?\n";
             char input;
             std::cin >> input;
             if (input == 'Y' || input == 'y') {
                 player.reset();
-                run();
+                return run();
             }
         }
 };

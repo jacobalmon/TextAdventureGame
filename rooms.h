@@ -29,21 +29,33 @@ class Room1 {
               
             goober.takeDamage(15);
 
-            if (!goober.isAlive()) {
-                std::cout << "Goober has been defeated!\n";
+            while (goober.isAlive() && player.isAlive()) {
+                std::cout << "Goober attacks you with * *.\n";
                 player.takeDamage(15);
-                std::cout << "You lost 15 HP in the battle.\n";
-                std::cout << "You survived and can now proceed.\n";
-                player.addItem("Key");
-                std::cout << "Congratulations! You obtained a key\n";
-                return true;
+
+                if (!player.isAlive()) {
+                    std::cout << "You have been defeated.\n";
+                    std::cout << "Game Over.\n";
+                    return false;
+                }
+
+                std::cout << "You attacked Goober with your Rusty Sword!.\n";
+                goober.takeDamage(15);
+
+                if (!goober.isAlive()) {
+                    std::cout << "Goober has been defeated!\n";
+                    std::cout << "You survived and can now proceed.\n";
+                    std::cout << "Congratulations! You obtained a key\n";
+                    player.addItem("Key");
+                    return true;
+                }
             }
           } 
           else if(choice_dos == 2)//Player will be able to enter room2 without obtaining a weapon but will immedietly get killed by an enemy and will be forced to start over.
           {
            std::cout << "You have enterd room 1.8\n";
-           player.addItem("Key");
            std::cout << "Congratulations! You obtained a key\n";
+           player.addItem("Key");
            return true;
           
           }
@@ -57,7 +69,7 @@ class Room1 {
               return false;
           } else {
             std::cout << "Invalid Input, Try Again.\n";
-            fled(player);
+            return fled(player);
           }
           return false;
     }
@@ -89,7 +101,7 @@ class Room1 {
             return false;
        } else {
             std::cout << "Invalid Input, Try Again.\n";
-            enter(player);
+            return enter(player);
        }
        return false;
     }

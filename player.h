@@ -13,13 +13,14 @@ class Player {
         bool isAlive() const {return health > 0;}  
 
         // Allows player to take damage.
-        void takeDamage(unsigned int amount) {
+        void takeDamage(int amount) {
             health -= amount;
+            if (health < 0) { health = 0; }
             std::cout << "You took " << amount << " damage.\n";
-            std::cout << "Health: " << health << ".\n";
+            std::cout << "Your Health: " << health << ".\n";
         }
          //Allows player to heal if a specific item is found (Eddie)
-        void addHealth(unsigned int amount){
+        void addHealth(int amount){
             if(health == 100)
             {
                 std::cout << "Health is full";
@@ -51,8 +52,16 @@ class Player {
                 std::cout << "- " << item << "\n";
             }
         }
-
-        bool hasItem(const std::string& item){}
+        
+        // Determines if player has an item or not.
+        bool hasItem(const std::string& item){
+            for (int i; i < inventory.size(); ++i) {
+                if (item == inventory[i]) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // Returns Current Inventory.
         std::vector<std::string>& getInventory() { return inventory; }
