@@ -271,5 +271,69 @@ class Room3 {
 
     } // the diidler room.
 };
-class Room4 {}; //boss room.
+
+class Room4 {
+public:
+    bool enter(Player& player) {
+        std::cout << "You have entered Room 4...
+";
+        std::cout << "The air is damp, and cobwebs stretch across the walls.
+";
+        std::cout << "As you take another step forward, the ground trembles beneath you.
+";
+        std::cout << "A deep chittering noise echoes through the chamber...
+";
+        std::cout << "A MASSIVE SPIDER DESCENDS FROM THE CEILING!
+";
+        
+        // Check if player has a weapon
+        if (!player.hasItem("Rusty Sword")) {
+            std::cout << "You have no weapon! The spider lunges at you with its fangs!
+";
+            player.takeDamage(100); // Instant kill
+            std::cout << "You have been devoured by the Giant Spider.
+";
+            std::cout << "Game Over.
+";
+            return false;
+        }
+        
+        std::cout << "Prepare for battle!
+";
+        int spiderHealth = 100;
+        int spiderDamage = 20;
+        int playerDamage = 15; // Rusty Sword damage
+        
+        while (spiderHealth > 0 && player.isAlive()) {
+            std::cout << "You strike the Giant Spider!
+";
+            spiderHealth -= playerDamage;
+            std::cout << "Spider Health: " << spiderHealth << " HP remaining.
+";
+            
+            if (spiderHealth <= 0) {
+                std::cout << "You have slain the Giant Spider!
+";
+                std::cout << "Its corpse dissolves into the ground, revealing a hidden passage.
+";
+                std::cout << "Congratulations! You have completed the game!
+";
+                return true;
+            }
+            
+            std::cout << "The Giant Spider attacks!
+";
+            player.takeDamage(spiderDamage);
+            
+            if (!player.isAlive()) {
+                std::cout << "You have been slain by the Giant Spider.
+";
+                std::cout << "Game Over.
+";
+                return false;
+            }
+        }
+        return false;
+    }
+};//boss room.
 >>>>>>> Oscar
