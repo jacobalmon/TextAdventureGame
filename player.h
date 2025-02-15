@@ -55,12 +55,19 @@ class Player {
         
         // Determines if player has an item or not.
         bool hasItem(const std::string& item){
-            for (int i; i < inventory.size(); ++i) {
-                if (item == inventory[i]) {
+            for (size_t i = 0; i < inventory.size(); ++i) 
+            {
+                if (inventory[i] == item) 
+                {
                     return true;
                 }
             }
             return false;
+        }
+
+        void restoreHealth() {
+            health = 100;
+            std::cout << "Your health has been fully restored!\n";
         }
 
         // Returns Current Inventory.
